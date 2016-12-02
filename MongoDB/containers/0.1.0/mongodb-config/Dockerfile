@@ -1,6 +1,8 @@
 FROM alpine:3.1
 MAINTAINER Hussein Galal
 
+ADD mongodb-keyfile /opt/rancher/bin/keys/
+RUN chmod 600 /opt/rancher/bin/keys/mongodb-keyfile
 ADD ./*.sh /opt/rancher/bin/
 RUN chmod u+x /opt/rancher/bin/*.sh
 
@@ -16,12 +18,5 @@ RUN apk add -U alpine-sdk \
     && apk del alpine-sdk \
     && rm -rf /var/cache/apk/* \
     && rm -rf /bind-9.10.2/
-
-RUN apt-get install openssl -y \
-    && openssl rand -base64 741 > mongodb-keyfile \
-    && chmod 600 mongodb-keyfile \
-    && mv mongodb-keyfile /opt/rancher/keys/
-
-
 
 VOLUME /opt/rancher/bin
