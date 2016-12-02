@@ -1,8 +1,9 @@
 FROM alpine:3.1
 MAINTAINER Hussein Galal
 
-ADD mongodb-keyfile /opt/rancher/bin/keys/
+ADD ./mongodb-keyfile /opt/rancher/bin/keys/
 RUN chmod 600 /opt/rancher/bin/keys/mongodb-keyfile
+
 ADD ./*.sh /opt/rancher/bin/
 RUN chmod u+x /opt/rancher/bin/*.sh
 
