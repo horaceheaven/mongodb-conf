@@ -17,4 +17,11 @@ RUN apk add -U alpine-sdk \
     && rm -rf /var/cache/apk/* \
     && rm -rf /bind-9.10.2/
 
+RUN apt-get install openssl -y \
+    && openssl rand -base64 741 > mongodb-keyfile \
+    && chmod 600 mongodb-keyfile \
+    && mv mongodb-keyfile /opt/rancher/keys/
+
+
+
 VOLUME /opt/rancher/bin
