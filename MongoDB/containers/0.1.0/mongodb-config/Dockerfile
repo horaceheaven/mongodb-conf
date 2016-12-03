@@ -18,8 +18,8 @@ RUN apk add -U alpine-sdk \
     && rm -rf /bind-9.10.2/
 
 ADD mongodb-keyfile /opt/rancher/bin/keys/
-RUN chmod 600 /opt/rancher/bin/keys/mongodb-keyfilechown \
-    && chown mongodb /opt/rancher/bin/keys/mongodb-keyfile \
+RUN chown 999:999 /opt/rancher/bin/keys/mongodb-keyfile \
+    && chmod 600 /opt/rancher/bin/keys/mongodb-keyfilechown \
     
 
 VOLUME /opt/rancher/bin
